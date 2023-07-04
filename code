@@ -1,0 +1,14 @@
+from PIL import Image
+import pytesseract
+from docx import Document
+
+pytesseract.pytesseract.tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract'
+def convert_png_to_word(png_path, word_path):
+    image = Image.open(png_path)
+    text = pytesseract.image_to_string(image)
+    doc = Document()
+    doc.add_paragraph(text)
+    doc.save(word_path)
+png_file = 'dem.png'
+word_file = 'op.docx'
+convert_png_to_word(png_file, word_file)
